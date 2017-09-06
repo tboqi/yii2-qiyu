@@ -9,7 +9,12 @@ class Controller extends \yii\web\Controller
     public function render($tpl, $data = [])
     {
         if ($this->isJson()) {
-            return $this->renderJson(['tpl' => $tpl, 'data' => $data]);
+            return $this->renderJson([
+                'tpl' => $tpl,
+                'data' => $data,
+                'controller' => \Yii::$app->controller->id,
+                'action' => \Yii::$app->controller->action->id,
+            ]);
         } else {
             return parent::render($tpl, $data);
         }
