@@ -5,6 +5,7 @@ namespace qiyu;
 class Controller extends \yii\web\Controller
 {
     public $layout = false;
+    public $enableCsrfValidation = false;
 
     public function render($tpl, $data = [])
     {
