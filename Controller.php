@@ -2,19 +2,30 @@
 
 namespace qiyu;
 
+use Yii;
+
 class Controller extends \yii\web\Controller
 {
     public $layout = false;
     public $enableCsrfValidation = false;
 
+    private $isLogin = false;
+
     public function render($tpl, $data = [])
     {
+        if (Yii::$app->user->getId()) {
+            $this->isLogin = true;
+        }
+        $data += [
+            'isLogin' => $this->isLogin,
+            'controller' => \Yii::$app->controller->id,
+            'action' => \Yii::$app->controller->action->id,
+            'module' => \Yii::$app->controller->module->id];
+
         if ($this->isJson()) {
             return $this->renderJson([
                 'tpl' => $tpl,
                 'data' => $data,
-                'controller' => \Yii::$app->controller->id,
-                'action' => \Yii::$app->controller->action->id,
             ]);
         } else {
             return parent::render($tpl, $data);
