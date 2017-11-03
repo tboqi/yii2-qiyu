@@ -3,7 +3,6 @@
 namespace qiyu;
 
 use Yii;
-use yii\web\BadRequestHttpException;
 
 class ControllerAdmin extends Controller
 {
@@ -11,7 +10,7 @@ class ControllerAdmin extends Controller
     {
         parent::beforeAction($action);
         if (!Yii::$app->user->getId()) {
-            throw new BadRequestHttpException('没有登录');
+            return $this->redirect('/site/login');
         }
         return true;
     }
