@@ -11,8 +11,8 @@ class ControllerPlus extends \yii\web\Controller
      */
     public function beforeAction($action)
     {
-        // var_dump(Yii::$app->controller->module);exit;
-        $action = Yii::$app->controller->module->module->requestedRoute;
+        // var_dump(Yii::$app->controller);exit;
+        $action = Yii::$app->controller->module->requestedRoute;
         // var_dump($action);exit;
         if (\Yii::$app->user->can('/' . $action)) {
             return true;

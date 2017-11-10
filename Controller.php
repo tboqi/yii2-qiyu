@@ -18,9 +18,15 @@ class Controller extends \yii\web\Controller
         }
         $data += [
             'isLogin' => $this->isLogin,
-            'controller' => \Yii::$app->controller->id,
-            'action' => \Yii::$app->controller->action->id,
-            'module' => \Yii::$app->controller->module->id];
+            'router' => [
+                'controller' => \Yii::$app->controller->id,
+                'action' => \Yii::$app->controller->action->id,
+                'module' => \Yii::$app->controller->module->id,
+            ],
+            'url' => [
+                'static' => '',
+            ],
+        ];
 
         if ($this->isJson()) {
             return $this->renderJson([
