@@ -61,4 +61,15 @@ class Controller extends \yii\web\Controller
             return false;
         }
     }
+    /**
+     * @inheritdoc
+     */
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+        ];
+    }
 }
