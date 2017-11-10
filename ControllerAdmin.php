@@ -10,7 +10,7 @@ class ControllerAdmin extends Controller
     {
         parent::beforeAction($action);
         if (!Yii::$app->user->getId()) {
-            return $this->redirect('/site/login');
+            return $this->redirect('/account/login');
         }
         return true;
     }

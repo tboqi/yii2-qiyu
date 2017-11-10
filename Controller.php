@@ -13,11 +13,7 @@ class Controller extends \yii\web\Controller
 
     public function render($tpl, $data = [])
     {
-        if (Yii::$app->user->getId()) {
-            $this->isLogin = true;
-        }
         $data += [
-            'isLogin' => $this->isLogin,
             'router' => [
                 'controller' => \Yii::$app->controller->id,
                 'action' => \Yii::$app->controller->action->id,
@@ -27,6 +23,19 @@ class Controller extends \yii\web\Controller
                 'static' => '',
             ],
         ];
+        if ($userId = Yii::$app->user->getId()) {
+            $this->isLogin = true;
+            $userInfo = Yii::$app->authManager->getRolesByUser($userId);
+            $data['userInfo'] = [
+                'role' => key($userInfo),
+                'id' => $userId,
+                'name' => Yii::$app->user->identity->username,
+            ];
+            $data['isLogin'] = $this->isLogin;
+        }
+
+        if ($this->isLogin) {
+        }
 
         if ($this->isJson()) {
             return $this->renderJson([
