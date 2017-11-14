@@ -32,10 +32,10 @@ class Controller extends \yii\web\Controller
                 'name' => Yii::$app->user->identity->username,
             ];
             $data['isLogin'] = $this->isLogin;
-        }
-
-        if ($this->isLogin) {
-        }
+        }else{
+    $data['userInfo']=['role'=>'','name'=>'','id'=>0];
+$data['isLogin']=false;
+}
 
         if ($this->isJson()) {
             return $this->renderJson([
