@@ -40,12 +40,12 @@ class BeisenApi{
      * 获取指定状态或阶段的应聘者id
      * @开始时间 $start_date Y-m-d
      * @结束时间 $end_date Y-m-d
-     * @状态 $status_id S12
-     * @阶段 phase_id U11
+     * @状态 $status_id U11
+     * @阶段 phase_id S12
      *
      * @return array
      **/
-    static function getApplicantIdsByDateAndStatus($start_date,$end_date,$status_id='S12',$phase_id='U11'){
+    static function getApplicantIdsByDateAndStatus($start_date,$end_date,$status_id='S111',$phase_id='U12'){
         //时间
         $dtt_st=strtotime($start_date);
         $dtt_et=strtotime($end_date);
@@ -96,12 +96,12 @@ class BeisenApi{
      *
      * @return array
      **/
-    static function getApplicantsById($applicant_id_collection){
-        if(!$applicant_id_collection) return [];
-        $url='http://api.beisenapp.com/RecruitV2/'.\Yii::$app->params['beisen_tenant_id'].'/Applicant/ById/'.$applicant_id_collection.'?language=1&photo_base64=1&has_Long=0';
+    static function getApplicantsById($applicant_id){
+        if(!$applicant_id) return [];
+        $url='http://api.beisenapp.com/RecruitV2/'.\Yii::$app->params['beisen_tenant_id'].'/Applicant/ById/'.$applicant_id.'?language=1&photo_base64=1&has_Long=0';
         $res=Curl::curl_get($url,1);
         $res=json_decode($res,true);
-
+        $res=isset($res[0])?$res[0]:[];
         return $res;
     }
 
