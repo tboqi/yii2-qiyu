@@ -20,7 +20,7 @@ class MyPage {
     // 分页栏每页显示的页数
     protected $rollPage   ;
     // 分页显示定制
-    protected $config  =	array('header'=>'条记录','prev'=>'<','next'=>'>','first'=>'<<','last'=>'>>','theme'=>' %totalRow% %header% %nowPage%/%totalPage% 页   %first%  %prePage%  %upPage% %linkPage% %downPage%  %nextPage% %end%');
+    protected $config  =	array('header'=>'条记录','prev'=>'<','next'=>'>','first'=>'<<','last'=>'>>','theme'=>'共有 %totalRow% %header% %nowPage%/%totalPage% 页   %first%  %prePage%  %upPage% %linkPage% %downPage%  %nextPage% %end%');
 
     public function __construct($totalRows,$listRows=6,$nowPage=1,$parameter='',$rollPage=5) {
         $this->totalRows = $totalRows;
