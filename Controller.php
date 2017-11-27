@@ -6,15 +6,13 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 
-class Controller extends \yii\web\Controller
-{
+class Controller extends \yii\web\Controller {
     public $layout = false;
     public $enableCsrfValidation = false;
 
     private $isLogin = false;
 
-    public function render($tpl, $data = [])
-    {
+    public function render($tpl, $data = []) {
         $data += [
             'router' => [
                 'controller' => \Yii::$app->controller->id,
@@ -34,10 +32,10 @@ class Controller extends \yii\web\Controller
                 'name' => Yii::$app->user->identity->username,
             ];
             $data['isLogin'] = $this->isLogin;
-        }else{
-    $data['userInfo']=['role'=>'','name'=>'','id'=>0];
-$data['isLogin']=false;
-}
+        } else {
+            $data['userInfo'] = ['role' => '', 'name' => '', 'id' => 0];
+            $data['isLogin'] = false;
+        }
 
         if ($this->isJson()) {
             return $this->renderJson([
@@ -49,14 +47,12 @@ $data['isLogin']=false;
         }
     }
 
-    public function renderJson($arr)
-    {
+    public function renderJson($arr) {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         return $arr;
     }
 
-    private function isJson()
-    {
+    private function isJson() {
         if (isset($_GET['isJson']) && $_GET['isJson'] == 1) {
             return true;
         } else {
@@ -66,8 +62,7 @@ $data['isLogin']=false;
     /**
      * @inheritdoc
      */
-    public function actions()
-    {
+    public function actions() {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
